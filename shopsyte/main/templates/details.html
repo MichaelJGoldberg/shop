@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+    <p>{{game.title}}</p>
+    <p>{{game.genre}}</p>
+    <p>{{game.description }}</p>
+    <p>{{game.price}}</p>
+
+    <h3><a href = "comment/">комментировать</a></h3> 
+    {% for comment in commentarys %}
+        <p>{{comment.texts}}</p>
+        <p>{{comment.user}}</p> 
+        <form method = "POST" action = "http://127.0.0.1:8000/{{game.id}}/{{comment.id}}/upvote/">
+            {% csrf_token %}
+            <p class = "d_data"><input  type = "submit" value = "upvote"></p>
+            <p class = "d_data">{{comment.upvotes}}</p>
+        </form>
+
+        <form method = "POST" action = "http://127.0.0.1:8000/{{game.id}}/{{comment.id}}/downvote/">
+            {% csrf_token %}
+
+            <p class = "d_data"><input  type = "submit" value = "downvote"></p>
+            <p class = "d_data">{{comment.downvotes}}</p>
+        </form>
+    {% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% load static %}
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href= "{% static "style.css" %}">
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        body
+        {
+            margin-left: 20%;
+            margin-right: 20%;
+            text-align: center;
+            outline: 1px solid #000;
+            background-color: gray;
+        }
+        img{
+            width: 100%; /* Ширина изображений */ /* Высота изображении */
+            height:100%;
+            object-fit: cover;
+        }
+        .game{
+            outline: 1px solid #000;
+            height:25%;
+            width:25%;
+            padding-bottom: 5%;
+            float:left;
+            background-color: white;
+        }
+        li,a
+        {   
+            color:black;
+            list-style-type: none;
+            text-decoration: none;
+        }
+        .navbar
+        {
+            background-color: white;
+        }
+        .nav_elem
+        {    
+            outline: 1px solid #000;
+            display: inline;
+        }
+        .registr_button
+        {
+            outline: 1px solid #000;
+            margin-left: 2%;
+            margin-top: 1%;
+            padding:0.9px;
+            background-color: white;
+        }
+
+        .registr_button1
+        {
+            padding:2.7px;
+            outline: 1px solid #000;
+            border: none;
+            background-color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <div class = "navbar">
+        <h2 class = "nav_elem"><a  href = "http://127.0.0.1:8000/index">на главную</a></h2>
+        <h2 class ="nav_elem"><a href = "http://127.0.0.1:8000/search/">поиск</a></h2>
+        {% if user.is_authenticated %}
+        <h2 class = "nav_elem"><a  href = "http://127.0.0.1:8000/accounts/logout/">выйти</a></h2>
+        {% else %}
+        <h2 class = "nav_elem"><a  href = "http://127.0.0.1:8000/accounts/login/">войти</a></h2>
+        {% endif %}
+    </div>
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>
