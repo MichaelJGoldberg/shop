@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+    <div class = "main_container">
     {% for game in games %}
     <div class="container">
     <a href ="http://127.0.0.1:8000/{{game.id}}/"><img src ="{{ MEDIA_URL }}{{game.image.url}}"></a>
-    <a href ="http://127.0.0.1:8000/{{game.id}}/">{{game.title}} {{game.price}}р</a>
+    <a href ="http://127.0.0.1:8000/{{game.id}}/"><p class = "name"><strong>{{game.title}} {{game.price}}р</strong></p></a>
     </div>
     {% endfor %}
+    </div>
 
 {% endblock %}
