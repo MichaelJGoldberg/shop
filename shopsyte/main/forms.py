@@ -4,7 +4,7 @@ class CommentForm(forms.Form):
     text = forms.CharField(max_length=400)
 
 class SearchForm(forms.Form):
-    text = forms.CharField(max_length=100)
+    text = forms.CharField(widget=forms.TextInput(attrs={"class":"searchform","autocomplete":"off"}),max_length=100)
 
 class LoginForm(forms.Form): 
     name = forms.CharField(max_length=100)

@@ -6,22 +6,21 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 def index(request):
+    _SearchForm = SearchForm()
     games = Game.objects.filter()
-    context = {"games":games}
+    context = {"games":games,"search_form":_SearchForm}
     return render(request,"index.html",context)
 
-def details(request, game_id):
-
-    value = Game.objects.get(id = game_id)
-    game = get_object_or_404(Game, pk=game_id)
-    c_list = Comment.objects.filter(game = value)
+def details(request, game_title):
+    game = Game.objects.get(title = game_title)
+    c_list = Comment.objects.filter(game = game)
     context = {'game': game,'commentarys':c_list}
     return render(request, 'details.html', context)
 
 
 def search(request):
 
-        _SearchForm = SearchForm
+        _SearchForm = SearchForm()
         context = {"search_form":_SearchForm}
         return render(request, 'search.html',context)
 
@@ -31,7 +30,7 @@ def searching(request):
         if request.method == "POST":
             value = request.POST.get("text")
             game = Game.objects.get(title = value)
-            link = '//127.0.0.1:8000/' + str(game.id)
+            link = '//127.0.0.1:8000/' + str(game.title)
             return redirect(link)
 
 @login_required

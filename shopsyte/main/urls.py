@@ -3,10 +3,10 @@ from . import views
  
                                                                                                             
 urlpatterns = [
-    path("index/", views.index),
-    path('<int:game_id>/', views.details),
-    path('search/', views.search),
-    path('search/searching/', views.searching),
+    path("home/", views.index),
+    path('<str:game_title>/', views.details),
+    path('home/search/', views.search),
+    path('searching/', views.searching),
     path('<int:game_id>/comment/', views.comment ),
     path('<int:game_id>/comment/commenting/', views.commenting ),
     path('<int:game_id>/<int:comment_id>/upvote/', views.upvote),

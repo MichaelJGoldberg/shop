@@ -1,30 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class ="content">
-    <p>{{game.title}}</p>
-    <p>{{game.genre}}</p>
-    <p>{{game.description }}</p>
-    <p>{{game.price}}р</p>
+<div class = "content">
+<img class = "details_image" src ="{{ MEDIA_URL }}{{game.image.url}}">
 </div>
+<div class = "contents">
+<p>купить {{game.title}}</p>
+
+<p>{{game.price}}р</p>
+</div>
+
+<div class = "descript">
+    <p>Жанр      {{game.genre}} </p>
+    <p>Платформа                </p>
+    <p>Дата Выхода              </p>
+    <p>Издатель                 </p>
+    <p>Разработчик              </p>
+</div>
+<div class = "game_descript">
+    <p>{{game.description }}</p>
+</div>
+
     <h3><a href = "comment/">комментировать</a></h3> 
 
     {% for comment in commentarys %}
     <div class = "comments">
         <p>{{comment.texts}}</p>
         <p>{{comment.user}}</p> 
-        <form method = "POST" action = "http://127.0.0.1:8000/{{game.id}}/{{comment.id}}/upvote/">
-            {% csrf_token %}
-            <p class = "d_data"><input  type = "submit" value = "upvote"></p>
-            <p class = "d_data">{{comment.upvotes}}</p>
-        </form>
-
-        <form method = "POST" action = "http://127.0.0.1:8000/{{game.id}}/{{comment.id}}/downvote/">
-            {% csrf_token %}
-
-            <p class = "d_data"><input  type = "submit" value = "downvote"></p>
-            <p class = "d_data">{{comment.downvotes}}</p>
-        </form>
     </div>
     {% endfor %}
 

@@ -14,7 +14,5 @@ class Comment(models.Model):
     texts = models.TextField()
     game = models.ForeignKey(Game,related_name='comments',on_delete = models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    upvotes = models.IntegerField(default = 0)
-    downvotes = models.IntegerField(default = 0)
     def __str__(self):
         return self.texts
